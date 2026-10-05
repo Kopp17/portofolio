@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bissap Ivoire — Fraîcheur naturelle d'Abidjan</title>
+<style>
+:root{--r:#b3123c;--r2:#7a0a28;--g:#ffb703;--c:#fff4ea;--d:#2a0a14}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--c);color:var(--d);overflow-x:hidden}
+canvas#p{position:fixed;inset:0;pointer-events:none;z-index:5}
+nav{position:fixed;top:0;width:100%;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:12px 5vw;background:#7a0a28ee;backdrop-filter:blur(8px);color:#fff}
+nav b{font-size:20px}nav b span{color:var(--g)}
+#cartBtn{background:var(--g);border:0;border-radius:30px;padding:9px 18px;font-weight:700;cursor:pointer;color:var(--d);transition:.2s}
+#cartBtn.bump{animation:bump .5s}@keyframes bump{40%{transform:scale(1.25) rotate(-6deg)}}
+header{min-height:100vh;background:radial-gradient(circle at 70% 40%,#e0245e,var(--r) 45%,var(--r2));color:#fff;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:20px;padding:90px 5vw 120px;position:relative;overflow:hidden}
+.tag{background:#ffffff22;display:inline-block;padding:6px 16px;border-radius:20px;font-size:13px;letter-spacing:2px;animation:in 1s both}
+h1{font-size:clamp(44px,8vw,100px);line-height:.95;margin:16px 0;animation:in 1s .2s both}
+h1 span{color:var(--g);display:inline-block;animation:wob 3s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(-3deg) scale(1.04)}}
+@keyframes in{from{opacity:0;transform:translateY(40px)}}
+header p{max-width:480px;font-size:18px;opacity:.92;margin-bottom:26px;animation:in 1s .4s both}
+.cta{display:inline-block;background:var(--g);color:var(--d);padding:15px 32px;border-radius:40px;font-weight:800;text-decoration:none;animation:in 1s .6s both,glow 2s 1.6s infinite;transition:transform .2s}
+.cta:hover{transform:scale(1.08) rotate(-2deg)}@keyframes glow{50%{box-shadow:0 0 0 18px #ffb70033}}
+.glass{position:relative;width:min(320px,70vw);margin:auto;animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-22px) rotate(3deg)}}
+.glass svg{width:100%;filter:drop-shadow(0 30px 30px #0006)}
+.bub{position:absolute;bottom:20%;width:12px;height:12px;border-radius:50%;background:#fff8;animation:up 3s infinite}
+@keyframes up{to{transform:translateY(-190px) scale(.3);opacity:0}}
+.wave{position:absolute;bottom:-2px;left:0;width:200%;height:90px;animation:wv 9s linear infinite}
+@keyframes wv{to{transform:translateX(-50%)}}
+section{padding:80px 5vw;position:relative;z-index:2}h2{font-size:clamp(28px,4vw,46px);text-align:center;margin-bottom:10px;color:var(--r2)}
+.sub{text-align:center;opacity:.7;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;max-width:1000px;margin:auto}
+.card{background:#fff;border-radius:22px;padding:24px;text-align:center;box-shadow:0 8px 24px #7a0a2814;transition:transform .2s,box-shadow .3s}
+.card:hover{box-shadow:0 20px 44px #7a0a2833}.card .em{font-size:64px;display:block;transition:.4s}.card:hover .em{transform:scale(1.25) rotate(-12deg)}
+.card h3{margin:8px 0 4px}.card p{font-size:14px;opacity:.7;min-height:40px}.price{font-size:24px;font-weight:800;color:var(--r);margin:10px 0}
+.add{background:var(--r);color:#fff;border:0;border-radius:30px;padding:11px 24px;font-weight:700;cursor:pointer;transition:.2s}.add:hover{background:var(--r2);transform:scale(1.07)}
+.why{background:var(--r2);color:#fff}.why h2{color:#fff}.why .card{background:#ffffff12;box-shadow:none;color:#fff}
+.reveal{opacity:0;transform:translateY(60px) scale(.95);transition:all .8s}.reveal.on{opacity:1;transform:none}
+#drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:#fff;z-index:30;transform:translateX(105%);transition:transform .5s cubic-bezier(.7,0,.2,1);padding:22px;display:flex;flex-direction:column;box-shadow:-10px 0 40px #0005}
+#drawer.open{transform:none}#drawer h3{display:flex;justify-content:space-between;color:var(--r2)}#drawer h3 button{border:0;background:none;font-size:24px;cursor:pointer}
+#items{flex:1;overflow:auto;margin:14px 0}.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eee;animation:in .4s both}
+.row b{flex:1}.row button{width:28px;height:28px;border-radius:50%;border:1px solid var(--r);background:#fff;color:var(--r);cursor:pointer;font-weight:700}
+#drawer input{width:100%;padding:11px;margin-bottom:8px;border:1px solid #ddd;border-radius:10px;font-size:15px}
+#total{font-size:20px;font-weight:800;margin:8px 0;color:var(--r)}
+#send{display:block;text-align:center;background:#25d366;color:#fff;padding:14px;border-radius:30px;font-weight:800;text-decoration:none}
+#send.off{opacity:.4;pointer-events:none}
+#veil{position:fixed;inset:0;background:#0006;z-index:25;opacity:0;pointer-events:none;transition:.4s}#veil.on{opacity:1;pointer-events:auto}
+.fly{position:fixed;z-index:40;font-size:34px;pointer-events:none;transition:all .8s cubic-bezier(.5,-.3,.7,1)}
+footer{background:var(--d);color:#fff;text-align:center;padding:30px;position:relative;z-index:2}
+@media(max-width:800px){header{grid-template-columns:1fr;text-align:center}header p{margin-inline:auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style></head><body>
+<canvas id="p"></canvas>
+<nav><b>Bissap <span>Ivoire</span> 🌺</b><button id="cartBtn">🛒 Panier (<span id="cnt">0</span>)</button></nav>
+<header>
+ <div><span class="tag">100 % NATUREL · FAIT À ABIDJAN</span><h1>Le goût du<br><span>bissap</span> frais</h1>
+ <p>Fleurs d'hibiscus infusées, sucrées juste comme il faut. Commandez en 1 minute, on vous livre à Abidjan.</p>
+ <a class="cta" href="#menu">Commander maintenant →</a></div>
+ <div class="glass">
+  <svg viewBox="0 0 200 280"><defs><linearGradient id="l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3b6b"/><stop offset="1" stop-color="#8a0c2e"/></linearGradient></defs>
+  <path d="M30 40h140l-16 210a14 14 0 0 1-14 13H60a14 14 0 0 1-14-13z" fill="#ffffff30" stroke="#fff" stroke-width="4"/>
+  <path d="M38 80h124l-13 168a10 10 0 0 1-10 9H61a10 10 0 0 1-10-9z" fill="url(#l)"/>
+  <path d="M40 80q30-14 60 0t60 0" fill="none" stroke="#ffffff88" stroke-width="4"/>
+  <rect x="104" y="6" width="10" height="90" rx="5" fill="#ffb703" transform="rotate(14 109 50)"/>
+  <circle cx="60" cy="34" r="22" fill="#ffb703"/><text x="60" y="44" font-size="26" text-anchor="middle">🍋</text></svg>
+  <i class="bub" style="left:35%;animation-delay:0s"></i><i class="bub" style="left:50%;animation-delay:.8s"></i><i class="bub" style="left:62%;animation-delay:1.6s"></i><i class="bub" style="left:44%;animation-delay:2.2s"></i></div>
+ <svg class="wave" viewBox="0 0 1200 90" preserveAspectRatio="none"><path d="M0 40Q150 0 300 40T600 40T900 40T1200 40V90H0z" fill="#fff4ea"/></svg>
+</header>
+<section id="menu"><h2 class="reveal">Notre <span style="color:var(--r)">carte</span></h2><p class="sub reveal">Prix d'exemple, à adapter</p><div class="grid" id="prods"></div></section>
+<section class="why"><h2 class="reveal">Pourquoi nous choisir ?</h2><br><div class="grid">
+ <div class="card reveal"><span class="em">🌿</span><h3>100 % naturel</h3><p>Pas de colorant, de vraies fleurs d'hibiscus.</p></div>
+ <div class="card reveal"><span class="em">🧊</span><h3>Servi bien frais</h3><p>Préparé le jour même et gardé au froid.</p></div>
+ <div class="card reveal"><span class="em">🛵</span><h3>Livraison rapide</h3><p>Commande par WhatsApp, livraison à Abidjan.</p></div></div></section>
+<footer>© 2026 Bissap Ivoire — Abidjan, Côte d'Ivoire<br>Site réalisé par Junior Gnezale</footer>
+<div id="veil"></div>
+<aside id="drawer"><h3>Mon panier <button id="x">✕</button></h3><div id="items"></div>
+ <input id="nom" placeholder="Votre nom"><input id="lieu" placeholder="Quartier de livraison (ex : Yopougon)">
+ <div id="total">Total : 0 FCFA</div><a id="send" class="off" target="_blank" rel="noopener">Commander sur WhatsApp</a></aside>
+<script>
+const CONFIG={whatsapp:'2250758167537',produits:[
+ {id:1,e:'🌺',n:'Bissap nature',d:'Le classique, bien frais.',p:500},
+ {id:2,e:'🫚',n:'Bissap gingembre',d:'Une touche qui réveille.',p:600},
+ {id:3,e:'🍍',n:'Bissap ananas',d:'Sucré et tropical.',p:700},
+ {id:4,e:'🍃',n:'Bissap menthe',d:'Rafraîchissant à souhait.',p:600},
+ {id:5,e:'🧴',n:'Bouteille 1,5 L',d:'Pour toute la famille.',p:2000},
+ {id:6,e:'🎉',n:'Pack événement (10 L)',d:'Anniversaires et cérémonies.',p:12000}]};
+const $=s=>document.querySelector(s),fmt=n=>n.toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA';
+let cart={};
+$('#prods').innerHTML=CONFIG.produits.map(p=>`<div class="card reveal"><span class="em">${p.e}</span><h3>${p.n}</h3><p>${p.d}</p><div class="price">${fmt(p.p)}</div><button class="add" data-id="${p.id}">Ajouter +</button></div>`).join('');
+function render(){const ids=Object.keys(cart);let tot=0,n=0,msg=[];
+ $('#items').innerHTML=ids.length?ids.map(i=>{const p=CONFIG.produits.find(x=>x.id==i),q=cart[i];tot+=p.p*q;n+=q;msg.push(`- ${q} x ${p.n} = ${fmt(p.p*q)}`);
+ return `<div class="row"><span style="font-size:28px">${p.e}</span><b>${p.n}<br><small>${fmt(p.p*q)}</small></b><button data-m="${i}">−</button>${q}<button data-a="${i}">+</button></div>`}).join(''):'<p style="opacity:.6;margin-top:20px">Votre panier est vide.</p>';
+ $('#cnt').textContent=n;$('#total').textContent='Total : '+fmt(tot);
+ const t=`Bonjour Bissap Ivoire, je souhaite commander :\n${msg.join('\n')}\nTotal : ${fmt(tot)}\nNom : ${$('#nom').value||'-'}\nLivraison : ${$('#lieu').value||'-'}`;
+ $('#send').href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(t);$('#send').classList.toggle('off',!n)}
+const open=v=>{$('#drawer').classList.toggle('open',v);$('#veil').classList.toggle('on',v)};
+$('#cartBtn').onclick=()=>open(true);$('#x').onclick=$('#veil').onclick=()=>open(false);
+['#nom','#lieu'].forEach(s=>$(s).oninput=render);
+document.addEventListener('click',e=>{const t=e.target;
+ if(t.dataset.id){cart[t.dataset.id]=(cart[t.dataset.id]||0)+1;
+  const f=document.createElement('div');f.className='fly';f.textContent=CONFIG.produits.find(p=>p.id==t.dataset.id).e;const b=t.getBoundingClientRect();f.style.left=b.left+'px';f.style.top=b.top+'px';document.body.append(f);
+  requestAnimationFrame(()=>{const c=$('#cartBtn').getBoundingClientRect();f.style.left=c.left+'px';f.style.top=c.top+'px';f.style.transform='scale(.3) rotate(360deg)'});
+  setTimeout(()=>{f.remove();$('#cartBtn').classList.remove('bump');void $('#cartBtn').offsetWidth;$('#cartBtn').classList.add('bump')},800);render()}
+ if(t.dataset.a){cart[t.dataset.a]++;render()}
+ if(t.dataset.m){if(--cart[t.dataset.m]<=0)delete cart[t.dataset.m];render()}});
+render();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3)*.12+'s';io.observe(el)});
+// Pétales qui tombent
+const cv=$('#p'),x=cv.getContext('2d');let pet=[];
+function sz(){cv.width=innerWidth;cv.height=innerHeight;pet=Array.from({length:28},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,s:6+Math.random()*9,v:.6+Math.random()*1.2,a:Math.random()*6,w:Math.random()*.04}))}
+sz();addEventListener('resize',sz);
+(function d(){x.clearRect(0,0,cv.width,cv.height);pet.forEach(p=>{p.y+=p.v;p.a+=p.w;p.x+=Math.sin(p.a)*.9;if(p.y>cv.height+20){p.y=-20;p.x=Math.random()*cv.width}
+x.save();x.translate(p.x,p.y);x.rotate(p.a*2);x.fillStyle='#d4144a99';x.beginPath();x.ellipse(0,0,p.s,p.s/2,0,0,7);x.fill();x.restore()});requestAnimationFrame(d)})();
+</script></body></html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CaissePro — Caisse &amp; stock</title>
+<style>
+:root{--bg:#0b1511;--p:#13241c;--g:#2ee59d;--o:#ffb454;--r:#ff5d6c;--t:#e9f5ef;--m:#86a396}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);min-height:100vh;background-image:radial-gradient(circle at 15% 0,#16402e55,transparent 45%),radial-gradient(circle at 90% 90%,#2ee59d18,transparent 40%)}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 4vw;flex-wrap:wrap;gap:10px}
+.logo{font-size:22px;font-weight:800}.logo span{color:var(--g)}.logo i{display:inline-block;animation:spin 6s linear infinite;font-style:normal}
+@keyframes spin{to{transform:rotateY(360deg)}}
+.tabs{display:flex;gap:6px;background:var(--p);padding:5px;border-radius:30px;position:relative}
+.tabs button{background:none;border:0;color:var(--m);padding:9px 20px;border-radius:25px;cursor:pointer;font-weight:600;z-index:1;transition:.3s}
+.tabs button.on{background:var(--g);color:#04170f;box-shadow:0 0 18px #2ee59d66}
+main{padding:10px 4vw 40px;max-width:1100px;margin:auto}
+.view{display:none;animation:in .5s both}.view.on{display:block}@keyframes in{from{opacity:0;transform:translateY(24px)}}
+.pos{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;align-content:start}
+.tile{background:var(--p);border:1px solid #ffffff12;border-radius:16px;padding:14px;cursor:pointer;text-align:left;color:var(--t);transition:.2s;position:relative;overflow:hidden}
+.tile:hover{transform:translateY(-5px) scale(1.03);border-color:var(--g);box-shadow:0 10px 24px #0008}.tile:active{transform:scale(.94)}
+.tile b{display:block;margin-bottom:4px}.tile small{color:var(--m)}.tile .pr{color:var(--g);font-weight:700;display:block;margin-top:6px}
+.tile.out{opacity:.35;pointer-events:none}.tile .st{display:inline-block;font-size:11px;background:#ffffff14;border-radius:10px;padding:2px 8px;margin-bottom:8px}
+.tile .st.low{background:var(--r);animation:pl 1.2s infinite}@keyframes pl{50%{opacity:.4}}
+.panel{background:var(--p);border-radius:20px;padding:18px;border:1px solid #ffffff12;position:sticky;top:10px;align-self:start}
+.line{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #ffffff10;animation:in .3s both}.line b{flex:1}
+.line button,.sbtn{width:26px;height:26px;border-radius:50%;border:1px solid var(--g);background:none;color:var(--g);cursor:pointer;font-weight:700}
+.big{font-size:34px;font-weight:800;color:var(--g);margin:12px 0}
+.pay{width:100%;padding:14px;border:0;border-radius:14px;background:linear-gradient(90deg,var(--g),#7dffd0);color:#04170f;font-weight:800;font-size:16px;cursor:pointer;transition:.2s}
+.pay:hover{transform:scale(1.03);box-shadow:0 0 28px #2ee59d88}.pay:disabled{opacity:.3;pointer-events:none}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:18px}
+.kpi{background:var(--p);border-radius:18px;padding:20px;border-left:4px solid var(--g)}.kpi b{display:block;font-size:30px;margin-top:4px}.kpi:nth-child(2){border-color:var(--o)}.kpi:nth-child(3){border-color:#6aa8ff}
+.chart{background:var(--p);border-radius:20px;padding:20px;height:290px;display:flex;align-items:flex-end;gap:14px}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:12px;color:var(--m)}
+.bar{width:100%;border-radius:10px 10px 0 0;background:linear-gradient(var(--g),#117a55);height:0;transition:height 1.2s cubic-bezier(.2,1.2,.3,1);margin-bottom:6px;position:relative}
+.bar::after{content:attr(data-v);position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--t);white-space:nowrap}
+table{width:100%;border-collapse:collapse;background:var(--p);border-radius:16px;overflow:hidden}th,td{padding:11px;text-align:left;font-size:14px;border-bottom:1px solid #ffffff10}th{color:var(--m)}
+.form{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+input{background:var(--p);border:1px solid #ffffff22;color:var(--t);padding:11px;border-radius:10px;flex:1;min-width:110px}
+.btn{background:var(--g);color:#04170f;border:0;border-radius:10px;padding:11px 18px;font-weight:700;cursor:pointer;transition:.2s}.btn:hover{transform:scale(1.06)}.btn.sec{background:var(--p);color:var(--t);border:1px solid #ffffff22}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--g);color:#04170f;padding:13px 24px;border-radius:30px;font-weight:700;transition:.5s cubic-bezier(.3,1.5,.5,1);z-index:30}#toast.on{transform:translate(-50%,0)}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:40}
+@media(max-width:800px){.pos{grid-template-columns:1fr}.panel{position:static}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header><div class="logo"><i>💰</i> Caisse<span>Pro</span></div>
+<div class="tabs"><button class="on" data-v="caisse">🛒 Caisse</button><button data-v="stock">📦 Stock</button><button data-v="rapport">📊 Rapport</button></div></header>
+<main>
+<div class="view on" id="caisse"><div class="pos"><div class="tiles" id="tiles"></div>
+ <div class="panel"><h3>Ticket en cours</h3><div id="ticket"></div><div class="big" id="tot">0 FCFA</div><button class="pay" id="pay">Encaisser ✔</button></div></div></div>
+<div class="view" id="stock"><div class="form"><input id="n" placeholder="Nom du produit"><input id="p" type="number" min="0" placeholder="Prix FCFA"><input id="s" type="number" min="0" placeholder="Quantité"><button class="btn" id="add">Ajouter</button></div>
+ <table><thead><tr><th>Produit</th><th>Prix</th><th>Stock</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="view" id="rapport"><div class="kpis"><div class="kpi">Chiffre d'affaires du jour<b id="k1" data-n="0">0</b></div><div class="kpi">Ventes du jour<b id="k2">0</b></div><div class="kpi">Produit star<b id="k3">-</b></div></div>
+ <div class="chart" id="chart"></div><br><button class="btn" id="csv">⬇ Exporter en CSV</button> <button class="btn sec" id="reset">Réinitialiser la démo</button></div>
+</main><div id="toast"></div><canvas id="cf"></canvas>
+<script>
+const $=s=>document.querySelector(s),fmt=n=>Math.round(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA';
+const KEY='caissepro-v1';let D,T={};
+function demo(){const pr=[['Riz 1 kg',900,40],['Huile 1 L',1500,25],['Sucre 1 kg',800,30],['Lait en poudre',2200,12],['Eau 1,5 L',500,60],['Savon',350,45],['Pâtes',450,35],['Café Nescafé',1800,8]];
+ const v=[];for(let d=6;d>=1;d--)for(let i=0;i<3+Math.floor(Math.random()*5);i++){const dt=new Date(Date.now()-d*864e5);v.push({d:dt.toISOString().slice(0,10),t:2000+Math.floor(Math.random()*9000),l:'-'})}
+ return {prod:pr.map((x,i)=>({id:i+1,n:x[0],p:x[1],s:x[2]})),ventes:v}}
+try{D=JSON.parse(localStorage.getItem(KEY))}catch(e){}D=D||demo();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
+const today=()=>new Date().toISOString().slice(0,10);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)}
+function counter(el,to){const s=performance.now();(function f(t){const k=Math.min(1,(t-s)/900);el.textContent=fmt(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s)}
+function tiles(){$('#tiles').innerHTML=D.prod.map(p=>`<button class="tile ${p.s<=0?'out':''}" data-id="${p.id}"><span class="st ${p.s<=5?'low':''}">${p.s} en stock</span><b>${p.n}</b><span class="pr">${fmt(p.p)}</span></button>`).join('')}
+function ticket(){const ids=Object.keys(T);let tot=0;
+ $('#ticket').innerHTML=ids.length?ids.map(i=>{const p=D.prod.find(x=>x.id==i);tot+=p.p*T[i];return `<div class="line"><b>${p.n}</b><button data-m="${i}">−</button>${T[i]}<button data-a="${i}">+</button></div>`}).join(''):'<p style="color:var(--m);padding:10px 0">Touchez un produit pour l\'ajouter.</p>';
+ $('#tot').textContent=fmt(tot);$('#pay').disabled=!ids.length;return tot}
+function stock(){$('#rows').innerHTML=D.prod.map(p=>`<tr><td>${p.n}</td><td>${fmt(p.p)}</td><td><button class="sbtn" data-sm="${p.id}">−</button> <b style="color:${p.s<=5?'var(--r)':'var(--t)'}">${p.s}</b> <button class="sbtn" data-sa="${p.id}">+</button></td><td><button class="btn sec" data-del="${p.id}">Supprimer</button></td></tr>`).join('')}
+function rapport(){const j=D.ventes.filter(v=>v.d==today());counter($('#k1'),j.reduce((a,v)=>a+v.t,0));$('#k2').textContent=j.length;
+ const c={};D.ventes.forEach(v=>v.l.split(', ').forEach(x=>{if(x!='-'){const n=x.replace(/^\d+ x /,'');c[n]=(c[n]||0)+ +x.split(' x ')[0]}}));
+ const top=Object.entries(c).sort((a,b)=>b[1]-a[1])[0];$('#k3').textContent=top?top[0]:'-';
+ const days=[...Array(7)].map((_,i)=>new Date(Date.now()-(6-i)*864e5).toISOString().slice(0,10));
+ const vals=days.map(d=>D.ventes.filter(v=>v.d==d).reduce((a,v)=>a+v.t,0));const mx=Math.max(...vals,1);
+ $('#chart').innerHTML=days.map((d,i)=>`<div class="col"><div class="bar" data-v="${vals[i]?fmt(vals[i]).replace(' FCFA',''):''}" data-h="${vals[i]/mx*85}"></div>${new Date(d).toLocaleDateString('fr-FR',{weekday:'short'})}</div>`).join('');
+ setTimeout(()=>document.querySelectorAll('.bar').forEach(b=>b.style.height=b.dataset.h+'%'),60)}
+function all(){tiles();ticket();stock()}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button,.view').forEach(e=>e.classList.remove('on'));b.classList.add('on');$('#'+b.dataset.v).classList.add('on');if(b.dataset.v=='rapport')rapport();else all()});
+document.addEventListener('click',e=>{const d=e.target.closest('[data-id],[data-a],[data-m],[data-sa],[data-sm],[data-del]');if(!d)return;const q=d.dataset,g=i=>D.prod.find(p=>p.id==i);
+ if(q.id){const p=g(q.id);if((T[q.id]||0)<p.s)T[q.id]=(T[q.id]||0)+1;else toast('Stock insuffisant');ticket()}
+ if(q.a){if(T[q.a]<g(q.a).s)T[q.a]++;ticket()}if(q.m){if(--T[q.m]<=0)delete T[q.m];ticket()}
+ if(q.sa){g(q.sa).s++;save();stock()}if(q.sm){const p=g(q.sm);p.s=Math.max(0,p.s-1);save();stock()}
+ if(q.del){D.prod=D.prod.filter(p=>p.id!=q.del);save();stock()}});
+$('#pay').onclick=()=>{const tot=ticket(),l=Object.keys(T).map(i=>{const p=D.prod.find(x=>x.id==i);p.s-=T[i];return `${T[i]} x ${p.n}`}).join(', ');
+ D.ventes.push({d:today(),t:tot,l});save();T={};all();toast('Vente enregistrée : '+fmt(tot)+' ✔');confetti()};
+$('#add').onclick=()=>{const n=$('#n').value.trim(),p=+$('#p').value,s=+$('#s').value;if(!n||!p)return toast('Nom et prix obligatoires');
+ D.prod.push({id:Date.now(),n,p,s:s||0});save();['#n','#p','#s'].forEach(i=>$(i).value='');stock();toast('Produit ajouté')};
+$('#csv').onclick=()=>{const r=['Date;Total;Détail',...D.ventes.map(v=>`${v.d};${v.t};${v.l}`)].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+r],{type:'text/csv'}));a.download='ventes.csv';a.click()};
+$('#reset').onclick=()=>{if(confirm('Remettre les données de démonstration ?')){D=demo();save();T={};all();rapport()}};
+// Confettis
+function confetti(){const c=$('#cf'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const cols=['#2ee59d','#ffb454','#6aa8ff','#ff5d6c','#fff'];
+ const P=Array.from({length:110},()=>({x:innerWidth/2,y:innerHeight*.7,vx:(Math.random()-.5)*16,vy:-8-Math.random()*12,c:cols[Math.random()*5|0],r:Math.random()*6,s:4+Math.random()*5}));let n=0;
+ (function f(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);x.restore()});
+ if(++n<110)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)})()}
+all();
+</script></body></html>
