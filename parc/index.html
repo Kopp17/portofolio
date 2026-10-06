@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🖥️%3C/text%3E%3C/svg%3E">
 <title>Parc IT — Démo gestion de parc informatique</title>
 <style>
 :root{--b:#12355b;--o:#e8832a;--g:#f3f5f8}
@@ -21,6 +21,24 @@ button.act{background:var(--b);color:#fff;border:0;padding:9px 16px;border-radiu
 .f{display:flex;gap:8px;flex-wrap:wrap}.f>*{flex:1;min-width:130px}
 .tag{padding:2px 9px;border-radius:10px;font-size:12px;color:#fff}.Haute{background:#c0392b}.Moyenne{background:#e8832a}.Basse{background:#2e8b57}
 .w{overflow-x:auto}
+
+#kp{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#ff6a1f,#ffc247,#4cc26b);z-index:9999;pointer-events:none}
+#kg{position:fixed;top:0;left:0;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:3;background:radial-gradient(circle,#ffc24733,transparent 65%);mix-blend-mode:screen;transition:transform .12s linear}
+.kw{display:inline-block;opacity:0;transform:translateY(70%) rotate(7deg);transition:transform .9s cubic-bezier(.2,1.4,.3,1),opacity .6s;transition-delay:calc(var(--i)*70ms);white-space:pre}
+.kon .kw{opacity:1;transform:none}
+.kgal{position:relative;z-index:2}.kgal .kl{font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.7;margin-bottom:14px;text-align:center}.kgal h2{text-align:center;margin-bottom:40px}
+.gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(110px,15vw,210px);gap:16px;max-width:1150px;margin:auto}
+.gal .ph:nth-child(1){grid-column:1/8;grid-row:1/3}.gal .ph:nth-child(2){grid-column:8/13;grid-row:1/2}.gal .ph:nth-child(3){grid-column:8/13;grid-row:2/4}.gal .ph:nth-child(4){grid-column:1/8;grid-row:3/4}
+.ph{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(135deg,#3a3a3a,#161616)}
+.ph img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;transition:filter .6s,clip-path 1.4s cubic-bezier(.7,0,.2,1);clip-path:inset(0 0 100% 0);will-change:transform}.ph.on img{clip-path:inset(0)}.ph:hover img{filter:saturate(1.3) brightness(1.08)}
+.ph figcaption{position:absolute;left:18px;bottom:14px;z-index:2;color:#fff;font:800 clamp(16px,2.2vw,26px) 'Arial Black',Arial,sans-serif;text-shadow:0 2px 14px #000b;transform:translateY(30px);opacity:0;transition:.8s .5s}.ph.on figcaption{transform:none;opacity:1}
+.ph::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,#0008);pointer-events:none}
+.ph.nf img{display:none}.ph.nf::before{content:attr(data-e);position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(40px,7vw,80px);animation:kf 3s ease-in-out infinite}@keyframes kf{50%{transform:scale(1.2) rotate(6deg)}}
+@media(max-width:700px){.gal{grid-template-columns:1fr;grid-auto-rows:210px}.gal .ph:nth-child(n){grid-column:1;grid-row:auto}}
+#ki{position:fixed;inset:0;z-index:99999;background:var(--kb,#08110d);display:grid;place-items:center;text-align:center;color:#fff;transition:clip-path 1s cubic-bezier(.8,0,.2,1);clip-path:inset(0)}#ki.out{clip-path:inset(0 0 100% 0)}
+#ki b{font-size:76px;display:block;animation:kj .6s ease-in-out infinite alternate}@keyframes kj{to{transform:translateY(-14px) rotate(-8deg)}}#ki h1{font:800 clamp(30px,6vw,60px) 'Arial Black',Arial;margin:10px 0 18px}#ki i{display:block;height:4px;width:0;margin:auto;background:var(--ka,#2ee59d);animation:kl 1.4s ease-out forwards}@keyframes kl{to{width:200px}}
+.kbl{position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;animation:kd 14s ease-in-out infinite alternate}@keyframes kd{to{transform:translate(18vw,12vh) scale(1.3)}}
+@media(prefers-reduced-motion:reduce){.kw,.ph,.ph figcaption{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}}
 </style></head><body>
 <nav><b>🖥️ Parc IT</b><button class="on" data-v="d">Tableau de bord</button><button data-v="e">Équipements</button><button data-v="t">Tickets</button><button id="csv">Export CSV</button></nav>
 <main>
@@ -53,4 +71,17 @@ document.addEventListener('click',e=>{if(e.target.dataset.del&&confirm('Supprime
 document.addEventListener('change',e=>{if(e.target.dataset.st){D.t.find(t=>t.id==e.target.dataset.st).s=e.target.value;save()}});
 $('#csv').onclick=()=>{const r=['ID;Titre;Équipement;Priorité;Statut;Date',...D.t.map(t=>[t.id,t.ti,nm(t.e),t.p,t.s,t.d].join(';'))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+r],{type:'text/csv'}));a.download='tickets.csv';a.click()};
 all();
-</script></body></html>
+</script><script>/*KITDONE*/(function(o){
+const $=(s)=>document.querySelectorAll(s);
+if(o.intro){const d=document.createElement('div');d.id='ki';d.style.setProperty('--kb',o.intro[2]);d.style.setProperty('--ka',o.intro[3]);d.innerHTML='<div><b>'+o.intro[1]+'</b><h1>'+o.intro[0]+'</h1><i></i></div>';document.body.prepend(d);setTimeout(()=>d.classList.add('out'),1600);setTimeout(()=>d.remove(),2800);
+ [[o.intro[3],'8vw','10vh',380],['#6aa8ff','60vw','50vh',320]].forEach(a=>{const b=document.createElement('div');b.className='kbl';b.style.cssText='background:'+a[0]+';left:'+a[1]+';top:'+a[2]+';width:'+a[3]+'px;height:'+a[3]+'px';document.body.append(b)})}
+let bar;if(!o.noprog){bar=document.createElement('div');bar.id='kp';document.body.append(bar)}
+if(!o.noglow&&matchMedia('(hover:hover)').matches){const g=document.createElement('div');g.id='kg';document.body.append(g);addEventListener('mousemove',e=>{g.style.transform='translate('+(e.clientX-200)+'px,'+(e.clientY-200)+'px)'})}
+function split(el){let i=0;(function w(n){[...n.childNodes].forEach(c=>{if(c.nodeType==3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(!t.trim())f.append(t);else{const s=document.createElement('span');s.className='kw';s.style.setProperty('--i',i++);s.textContent=t;f.append(s)}});c.replaceWith(f)}else if(c.nodeType==1&&!c.classList.contains('kw'))w(c)})})(el)}
+const hs=[...$('h2')].filter(h=>!h.closest('#ld,#ki,#lb'));hs.forEach(split);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add(e.target.tagName=='H2'?'kon':'on');io.unobserve(e.target)}),{threshold:.2});
+hs.forEach(h=>io.observe(h));const phs=[...$('.ph')];phs.forEach(p=>io.observe(p));
+(function f(){if(bar)bar.style.width=scrollY/Math.max(1,document.body.scrollHeight-innerHeight)*100+'%';
+ phs.forEach(p=>{const i=p.querySelector('img');if(!i)return;const r=p.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;i.style.transform='translateY('+((r.top+r.height/2-innerHeight/2)/innerHeight*-60)+'px) scale('+(p.classList.contains('on')?1.05:1.3)+')'});requestAnimationFrame(f)})();
+if(!o.nomag&&matchMedia('(hover:hover)').matches)$(o.mag||'.bt,.cta').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+(e.clientX-r.left-r.width/2)*.22+'px,'+(e.clientY-r.top-r.height/2)*.32+'px)'});b.addEventListener('mouseleave',()=>b.style.transform='')});
+})({intro:['Parc IT','🖥️','#12355b','#e8832a'],noglow:1,mag:'.act'});</script></body></html>
