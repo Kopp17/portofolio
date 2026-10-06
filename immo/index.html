@@ -1,59 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1626">
+<meta name="theme-color" content="#0f7a5c">
 <meta name="description" content="Immo Ivoire : villas, appartements et studios à Abidjan.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
-<title>Immo Ivoire — Trouvez votre maison à Abidjan</title>
+<title>Immo Ivoire — Trouvez le chez-vous qui vous ressemble</title>
 <style>
-:root{--bg:#0b1626;--p:#13233b;--au:#f5b841;--te:#2ec4b6;--t:#eef3fa;--m:#8fa4c0}
+:root{--bg:#f6f3ee;--ink:#0e1a16;--em:#0f7a5c;--em2:#0a5a43;--sa:#e9dfcf;--co:#ff6b4a;--m:#5d6b65}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden}
-nav{position:fixed;top:0;width:100%;z-index:30;display:flex;align-items:center;gap:18px;padding:12px 5vw;background:#0b1626d9;backdrop-filter:blur(10px)}
-nav b{font-size:20px;margin-right:auto}nav b span{color:var(--au)}nav a{color:var(--t);text-decoration:none;font-size:14px;position:relative}
-nav a:not(.bt)::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--au);transition:.3s}nav a:hover::after{width:100%}
-.bt{background:var(--au);color:#1c1300;border:0;padding:10px 20px;border-radius:30px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;transition:.25s;font-size:14px}
-.bt:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 24px #f5b84155}.bt.o{background:none;border:2px solid var(--te);color:var(--t)}.bt.o:hover{background:var(--te);color:#04201d}
-#inst{display:none}
-header{min-height:100vh;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:10px;padding:90px 5vw 120px;background:linear-gradient(180deg,#14305a,#1d5b86 55%,#f0a45d 100%)}
-.sun{position:absolute;right:12%;top:14%;width:110px;height:110px;border-radius:50%;background:radial-gradient(#fff3b0,var(--au));box-shadow:0 0 90px 30px #f5b84188;animation:sun 5s ease-in-out infinite}
-@keyframes sun{50%{transform:scale(1.12);box-shadow:0 0 130px 50px #f5b84199}}
-.cl{position:absolute;height:34px;border-radius:40px;background:#ffffff40;filter:blur(2px);animation:cl linear infinite}
-.cl::before{content:'';position:absolute;left:18%;top:-16px;width:44%;height:36px;border-radius:50%;background:inherit}
-@keyframes cl{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
-h1{font-size:clamp(34px,5.4vw,70px);line-height:1.05;position:relative}h1 .w{display:inline-block;opacity:0;transform:translateY(40px) rotate(4deg);animation:wd .8s forwards}
-@keyframes wd{to{opacity:1;transform:none}}h1 em{color:var(--au);font-style:normal}
-.tx p{margin:18px 0 26px;max-width:480px;font-size:18px;opacity:.92}.tx{position:relative;z-index:2}
-.hs{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}.hse{overflow:visible}.hs svg{width:min(480px,86vw);filter:drop-shadow(0 30px 24px #0007);cursor:pointer}
-.hs small{margin-top:6px;background:#0006;padding:5px 14px;border-radius:20px;font-size:12px}
-.sky{position:absolute;bottom:0;left:0;width:100%;height:150px;z-index:1;display:flex;align-items:flex-end;gap:2px}
-.sky i{flex:1;background:#0b1626;transform-origin:bottom;transform:scaleY(0);animation:rise 1.2s cubic-bezier(.2,1.2,.3,1) forwards;border-radius:3px 3px 0 0}
-@keyframes rise{to{transform:scaleY(1)}}
-.pc{transition:transform 1.1s cubic-bezier(.2,1.4,.4,1),opacity .8s;transform-box:fill-box;transform-origin:center}
-.ex .pc{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:.6}
-section{padding:80px 5vw}h2{font-size:clamp(28px,4vw,44px);margin-bottom:8px}h2 em{color:var(--au);font-style:normal}.sb{color:var(--m);margin-bottom:28px}
-.mq{overflow:hidden;background:var(--p);padding:14px 0;white-space:nowrap}.mq div{display:inline-block;animation:mq 26s linear infinite}.mq span{margin:0 28px;font-weight:600;color:var(--m)}.mq span:nth-child(odd){color:var(--au)}@keyframes mq{to{transform:translateX(-50%)}}
-.flt{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}.flt button,.flt select{background:var(--p);border:1px solid #ffffff22;color:var(--t);padding:10px 20px;border-radius:30px;cursor:pointer;font-weight:600;transition:.3s;font-size:14px}
-.flt button.on,.flt button:hover{background:var(--au);color:#1c1300;border-color:var(--au)}.flt select option{background:var(--p)}
-.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
-.ls{background:linear-gradient(160deg,#17304f,#0f1f35);border:1px solid #ffffff14;border-radius:22px;overflow:hidden;transition:box-shadow .3s,transform .15s;transform-style:preserve-3d}
-.ls.hide{display:none}.ls:hover{box-shadow:0 22px 46px #000a,0 0 0 1px var(--au)}
-.ls .vis{height:190px;background:linear-gradient(#2a6fa0,#7fc4e8);display:flex;align-items:flex-end;justify-content:center;position:relative;overflow:hidden}
-.ls .vis svg{width:78%;margin-bottom:-4px}.ls .tag{position:absolute;top:12px;left:12px;background:var(--au);color:#1c1300;font-weight:700;font-size:12px;padding:4px 12px;border-radius:20px;z-index:2}
-.ls .tag.l{background:var(--te);color:#04201d}.ls .bd{padding:18px}.ls h3{margin-bottom:2px}.ls .lo{color:var(--m);font-size:14px;margin-bottom:10px}
-.ls .pr{font-size:22px;font-weight:800;color:var(--au);margin:8px 0}.ls .ft{display:flex;gap:14px;color:var(--m);font-size:13px;margin-bottom:14px}
-.st3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}.stp{background:var(--p);border-radius:20px;padding:26px;text-align:center}
-.stp b{font-size:44px;display:block;animation:bob 3s ease-in-out infinite}.stp:nth-child(2) b{animation-delay:.4s}.stp:nth-child(3) b{animation-delay:.8s}@keyframes bob{50%{transform:translateY(-12px) rotate(8deg)}}
-.stp h3{margin:10px 0 6px}.stp p{color:var(--m);font-size:14px}
-.ct{display:grid;grid-template-columns:1fr 1fr;gap:34px;background:var(--p);border-radius:28px;padding:40px;max-width:1000px;margin:auto}
-form{display:flex;flex-direction:column;gap:12px}input,textarea{background:#0b1626;border:1px solid #ffffff22;color:var(--t);padding:13px;border-radius:12px;font-size:15px;font-family:inherit;transition:.3s}
-input:focus,textarea:focus{outline:0;border-color:var(--au);box-shadow:0 0 0 4px #f5b84122}textarea{min-height:110px;resize:vertical}
-.ci p{color:var(--m);margin:12px 0 20px}.ci a.m{color:var(--au);font-weight:700;font-size:18px;word-break:break-all}
-.rv{opacity:0;transform:translateY(50px);transition:all .8s}.rv.on{opacity:1;transform:none}
-footer{text-align:center;padding:30px;color:var(--m);font-size:13px;border-top:1px solid #ffffff12}
-@media(max-width:820px){header{grid-template-columns:1fr;text-align:center;padding-top:100px}.tx p{margin-inline:auto}.ct{grid-template-columns:1fr;padding:24px}nav a:not(.bt):not(#inst){display:none}.sun{right:6%;top:10%;width:70px;height:70px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}h1 .w,.rv,.sky i{opacity:1;transform:none}}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--ink);overflow-x:clip}
+.d{font-weight:900;letter-spacing:-.04em;line-height:.95}.d i{font:italic 400 1em Georgia,serif;letter-spacing:-.02em;color:var(--em)}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:40;display:flex;align-items:center;gap:26px;padding:10px 12px 10px 24px;border-radius:50px;background:#ffffffcc;backdrop-filter:blur(14px);box-shadow:0 8px 30px #0e1a1620;width:min(920px,94vw)}
+nav b{font-size:19px;margin-right:auto;letter-spacing:-.03em}nav b span{color:var(--em)}nav a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;opacity:.75;transition:.2s}nav a:hover{opacity:1;color:var(--em)}
+.bt{display:inline-block;background:var(--ink);color:#fff;border:0;padding:14px 28px;border-radius:50px;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer;transition:.3s;position:relative;overflow:hidden}.bt:hover{background:var(--em);transform:translateY(-3px);box-shadow:0 12px 26px #0f7a5c55}
+.bt.s{padding:10px 20px;font-size:14px}.bt.o{background:none;color:var(--ink);border:2px solid var(--ink)}.bt.o:hover{background:var(--ink);color:#fff}#inst{display:none}
+header{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:120px 5vw 150px;position:relative}
+.kick{display:inline-flex;gap:8px;align-items:center;background:var(--sa);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:700;margin-bottom:22px}.kick i{width:8px;height:8px;border-radius:50%;background:var(--em);animation:pl 1.6s infinite}@keyframes pl{0%{box-shadow:0 0 0 0 #0f7a5c88}100%{box-shadow:0 0 0 12px #0f7a5c00}}
+h1{font-size:clamp(40px,6vw,88px)}h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}h1 .ln span{display:inline-block;transform:translateY(110%);animation:up 1.1s cubic-bezier(.2,1,.3,1) forwards}h1 .ln:nth-child(2) span{animation-delay:.15s}h1 .ln:nth-child(3) span{animation-delay:.3s}@keyframes up{to{transform:none}}
+.lead{max-width:470px;margin:26px 0 30px;font-size:18px;line-height:1.6;color:var(--m);opacity:0;animation:fd 1s .7s forwards}@keyframes fd{to{opacity:1}}.cta{opacity:0;animation:fd 1s .9s forwards;display:flex;gap:12px;flex-wrap:wrap}
+.vw{position:relative;opacity:0;animation:fd 1.2s .4s forwards}.vid{position:relative;border-radius:36px;overflow:hidden;aspect-ratio:4/5;background:#14301f;box-shadow:0 40px 80px #0e1a1640;transform:rotate(2deg);transition:transform .6s}.vid:hover{transform:rotate(0) scale(1.02)}
+.vid video{width:100%;height:100%;object-fit:cover;display:block}
+.chip{position:absolute;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 14px 34px #0e1a1633;font-weight:700;font-size:14px;animation:fl 4s ease-in-out infinite;z-index:3}.chip small{display:block;font-weight:500;color:var(--m);font-size:12px}
+.c1{left:-26px;bottom:60px}.c2{right:-16px;top:40px;animation-delay:-2s}@keyframes fl{50%{transform:translateY(-14px)}}
+.rot{position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;z-index:3;animation:rt 16s linear infinite}.rot text{font:700 11.5px Arial;letter-spacing:3px;fill:var(--ink)}@keyframes rt{to{transform:rotate(360deg)}}.rot circle{fill:var(--em)}.rot .ctr{fill:#fff;font-size:30px;letter-spacing:0}
+.sr{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);width:min(960px,92vw);background:#fff;border-radius:26px;box-shadow:0 24px 60px #0e1a1630;padding:14px;display:grid;grid-template-columns:repeat(3,1fr) auto;gap:10px;z-index:5}
+.sr label{display:block;padding:8px 14px;border-radius:16px;background:var(--bg);font-size:11px;font-weight:700;color:var(--m);letter-spacing:.1em;text-transform:uppercase}.sr select{display:block;width:100%;margin-top:3px;border:0;background:none;font:700 16px 'Segoe UI',Arial;color:var(--ink);outline:0}
+.mq{overflow:hidden;white-space:nowrap;background:var(--ink);color:#fff;padding:18px 0}.mq div{display:inline-block;font-size:26px;animation:mq 28s linear infinite}.mq span{margin:0 26px;font-weight:800;letter-spacing:-.02em}.mq span:nth-child(even){color:var(--sa);font-family:Georgia,serif;font-style:italic;font-weight:400}@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:100px 5vw}h2{font-size:clamp(36px,6vw,80px);margin-bottom:12px}.sb{color:var(--m);margin-bottom:34px;font-size:17px}
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:26px}
+.ls{background:#fff;border-radius:28px;overflow:hidden;transition:transform .15s,box-shadow .4s;box-shadow:0 6px 24px #0e1a1612;transform-style:preserve-3d}.ls:hover{box-shadow:0 30px 60px #0e1a1630}.ls.hide{display:none}
+.pic{position:relative;height:230px;overflow:hidden;background:linear-gradient(#9fd4f2,#e7f4fb)}.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}.ls:hover .pic img{transform:scale(1.12)}
+.pic .hse{position:absolute;left:12%;bottom:-6px;width:76%;overflow:visible;display:none}.pic.nf img{display:none}.pic.nf .hse{display:block}
+.tag{position:absolute;left:14px;top:14px;background:var(--em);color:#fff;font-weight:800;font-size:12px;padding:6px 14px;border-radius:20px;z-index:2}.tag.l{background:var(--co)}
+.hr{position:absolute;right:14px;top:12px;width:40px;height:40px;border-radius:50%;border:0;background:#fffd;font-size:20px;cursor:pointer;z-index:2;transition:.3s}.hr.on{background:var(--co);transform:scale(1.15)}.hr:active{transform:scale(.8)}
+.bd{padding:20px 22px 24px}.bd h3{font-size:21px;letter-spacing:-.02em}.lo{color:var(--m);font-size:14px;margin:3px 0 12px}.pr{font-size:24px;font-weight:900;letter-spacing:-.03em;color:var(--em)}.ft{display:flex;gap:16px;color:var(--m);font-size:13px;margin:10px 0 16px}
+.pc{transition:transform 1.1s cubic-bezier(.2,1.4,.4,1),opacity .6s;transform-box:fill-box;transform-origin:center}.ex .pc{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:.5}
+.bld{height:380vh;padding:0;background:var(--ink);color:#fff}.stk{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:0 6vw;overflow:hidden}
+.stk h2{font-size:clamp(34px,5.4vw,76px)}.stk h2 i{color:#6fe0b8}.stp{margin-top:24px;display:grid;gap:12px;max-width:430px}.stp div{padding:16px 20px;border-radius:18px;border:1px solid #ffffff22;opacity:.35;transition:.5s}.stp div.on{opacity:1;background:#ffffff14;border-color:#6fe0b8;transform:translateX(10px)}.stp b{display:block;font-size:17px}.stp span{color:#b9c9c1;font-size:14px}
+.bs svg{width:100%;max-height:70vh;overflow:visible;filter:drop-shadow(0 30px 40px #0008)}.w{transition:fill 1s}.lit .w{fill:#ffe08a}
+.cn{display:grid;grid-template-columns:1fr 1fr;border-radius:36px;overflow:hidden;box-shadow:0 30px 70px #0e1a1625;max-width:1050px;margin:auto}.cn .l{background:var(--em);color:#fff;padding:46px}.cn .l h2{font-size:clamp(34px,4.6vw,58px)}.cn .l p{opacity:.9;margin:14px 0 24px;line-height:1.6}.cn .l a.m{color:#fff;font-weight:800;font-size:18px;word-break:break-all}
+.cn form{background:#fff;padding:40px;display:grid;gap:12px;align-content:center}input,textarea{width:100%;padding:15px 18px;border:2px solid #e6e1d8;border-radius:16px;font:16px 'Segoe UI',Arial;background:var(--bg);transition:.3s}input:focus,textarea:focus{outline:0;border-color:var(--em);background:#fff}textarea{min-height:110px;resize:vertical}
+footer{text-align:center;padding:34px;color:var(--m);font-size:13px}footer a{color:var(--em);font-weight:700}
+.rv{opacity:0;transform:translateY(50px);transition:all .9s cubic-bezier(.2,.8,.2,1)}.rv.on{opacity:1;transform:none}
+@media(max-width:860px){header{grid-template-columns:1fr;padding-bottom:230px}.sr{grid-template-columns:1fr 1fr}.sr .bt{grid-column:1/-1}.stk{grid-template-columns:1fr;padding-top:70px}.bs{order:-1}.cn{grid-template-columns:1fr}nav a:not(.bt){display:none}.c1{left:6px}.c2{right:6px}.rot{right:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}h1 .ln span,.lead,.cta,.vw,.rv{opacity:1;transform:none}}
 
 #kp{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#ff6a1f,#ffc247,#4cc26b);z-index:9999;pointer-events:none}
 #kg{position:fixed;top:0;left:0;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:3;background:radial-gradient(circle,#ffc24733,transparent 65%);mix-blend-mode:screen;transition:transform .12s linear}
@@ -62,8 +55,8 @@ footer{text-align:center;padding:30px;color:var(--m);font-size:13px;border-top:1
 .kgal{position:relative;z-index:2}.kgal .kl{font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.7;margin-bottom:14px;text-align:center}.kgal h2{text-align:center;margin-bottom:40px}
 .gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(110px,15vw,210px);gap:16px;max-width:1150px;margin:auto}
 .gal .ph:nth-child(1){grid-column:1/8;grid-row:1/3}.gal .ph:nth-child(2){grid-column:8/13;grid-row:1/2}.gal .ph:nth-child(3){grid-column:8/13;grid-row:2/4}.gal .ph:nth-child(4){grid-column:1/8;grid-row:3/4}
-.ph{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(135deg,#3a3a3a,#161616)}
-.ph img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;transition:filter .6s,clip-path 1.4s cubic-bezier(.7,0,.2,1);clip-path:inset(0 0 100% 0);will-change:transform}.ph.on img{clip-path:inset(0)}.ph:hover img{filter:saturate(1.3) brightness(1.08)}
+.ph{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(135deg,#3a3a3a,#161616);clip-path:inset(0 0 100% 0 round 22px);transition:clip-path 1.3s cubic-bezier(.7,0,.2,1)}
+.ph.on{clip-path:inset(0 0 0 0 round 22px)}.ph img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;transition:filter .6s;will-change:transform}.ph:hover img{filter:saturate(1.3) brightness(1.08)}
 .ph figcaption{position:absolute;left:18px;bottom:14px;z-index:2;color:#fff;font:800 clamp(16px,2.2vw,26px) 'Arial Black',Arial,sans-serif;text-shadow:0 2px 14px #000b;transform:translateY(30px);opacity:0;transition:.8s .5s}.ph.on figcaption{transform:none;opacity:1}
 .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,#0008);pointer-events:none}
 .ph.nf img{display:none}.ph.nf::before{content:attr(data-e);position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(40px,7vw,80px);animation:kf 3s ease-in-out infinite}@keyframes kf{50%{transform:scale(1.2) rotate(6deg)}}
@@ -73,70 +66,48 @@ footer{text-align:center;padding:30px;color:var(--m);font-size:13px;border-top:1
 .kbl{position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;animation:kd 14s ease-in-out infinite alternate}@keyframes kd{to{transform:translate(18vw,12vh) scale(1.3)}}
 @media(prefers-reduced-motion:reduce){.kw,.ph,.ph figcaption{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}}
 </style></head><body>
-<nav><b>Immo<span>Ivoire</span> 🏠</b><a href="#biens">Biens</a><a href="#etapes">Comment ça marche</a><a href="#contact">Contact</a><button class="bt" id="inst">📲 Installer</button></nav>
-<header id="top"><div class="sun"></div>
- <div class="cl" style="top:18%;width:150px;animation-duration:50s"></div><div class="cl" style="top:34%;width:100px;animation-duration:36s;animation-delay:-14s"></div><div class="cl" style="top:9%;width:120px;animation-duration:64s;animation-delay:-30s"></div>
- <div class="tx"><h1 id="h1"></h1><p>Villas, appartements et studios à Abidjan. Parcourez les biens, puis écrivez-nous : on vous répond par e-mail.</p>
- <a class="bt" href="#biens">Voir les biens</a> <a class="bt o" href="#contact">Nous contacter</a></div>
- <div class="hs"><div id="hero"></div><small>👆 Touchez la maison pour la décomposer</small></div>
- <div class="sky" id="sky"></div></header>
+<nav><b>Immo<span>Ivoire</span></b><a href="#biens">Biens</a><a href="#projet">Du plan aux clés</a><a href="#contact">Contact</a><button class="bt s" id="inst">📲 Installer</button><a class="bt s" href="#contact" style="color:#fff;opacity:1">Nous écrire</a></nav>
+<header><div><span class="kick"><i></i>Abidjan · Cocody · Marcory · Plateau</span><h1 class="d"><span class="ln"><span>Trouvez le</span></span><span class="ln"><span><i>chez-vous</i></span></span><span class="ln"><span>qui vous ressemble</span></span></h1>
+ <p class="lead">Villas, appartements et studios sélectionnés à Abidjan. Visitez en vidéo, choisissez, puis écrivez-nous : on s'occupe du reste.</p><div class="cta"><a class="bt" href="#biens">Voir les biens</a><a class="bt o" href="#contact">Estimer mon bien</a></div></div>
+ <div class="vw"><div class="vid"><video id="hv" muted loop playsinline autoplay preload="metadata" poster="video/immo-hero.jpg"><source src="video/immo-hero.webm" type="video/webm"><source src="video/immo-hero.mp4" type="video/mp4"></video></div>
+ <div class="chip c1">🏡 Villa à Cocody<small>185 000 000 FCFA</small></div><div class="chip c2">⭐ Visite guidée<small>Prise de rendez-vous rapide</small></div>
+ <svg class="rot" viewBox="0 0 110 110"><circle cx="55" cy="55" r="55"/><defs><path id="cp" d="M55 55m-40 0a40 40 0 1 1 80 0a40 40 0 1 1-80 0"/></defs><text fill="#fff"><textPath href="#cp" style="fill:#fff">NOUVEAUTÉS · NOUVEAUTÉS ·</textPath></text><text class="ctr" x="55" y="66" text-anchor="middle">🏠</text></svg></div>
+ <div class="sr"><label>Type<select id="ft"><option value="">Vente et location</option><option>Vente</option><option>Location</option></select></label><label>Commune<select id="fc"><option value="">Toutes</option></select></label><label>Chambres<select id="fb"><option value="0">Peu importe</option><option value="1">1 et plus</option><option value="3">3 et plus</option><option value="5">5 et plus</option></select></label><button class="bt" id="go">Rechercher</button></div></header>
 <div class="mq"><div id="mq"></div></div>
-<section id="biens"><h2 class="rv">Nos <em>biens</em> à Abidjan</h2><p class="sb rv">Exemples de biens et de prix, à remplacer par vos annonces.</p>
- <div class="flt rv"><button class="on" data-t="all">Tous</button><button data-t="Vente">À vendre</button><button data-t="Location">À louer</button>
- <select id="com"><option value="">Toutes les communes</option></select></div><div class="gr" id="gr"></div></section>
-<section id="etapes"><h2 class="rv">Comment ça <em>marche</em> ?</h2><p class="sb rv">Trois étapes simples.</p><div class="st3">
- <div class="stp rv"><b>🔍</b><h3>1. Choisissez</h3><p>Parcourez les biens et filtrez par commune.</p></div>
- <div class="stp rv"><b>✉️</b><h3>2. Écrivez-nous</h3><p>Envoyez votre demande par e-mail en 30 secondes.</p></div>
- <div class="stp rv"><b>🔑</b><h3>3. Visitez</h3><p>On organise la visite et on vous accompagne.</p></div></div></section>
-<section class="kgal"><p class="kl">Nos biens en photos</p><h2 class="d">Visitez en <em>images</em></h2><div class="gal"><figure class="ph" data-e="🏡"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=70" alt="Villa avec piscine" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Villa avec piscine</figcaption></figure><figure class="ph" data-e="🌴"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=70" alt="Terrasse" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Terrasse</figcaption></figure><figure class="ph" data-e="🛋️"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=70" alt="Salon lumineux" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Salon lumineux</figcaption></figure><figure class="ph" data-e="🏠"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=70" alt="Maison familiale" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Maison familiale</figcaption></figure></div></section>
-<section id="contact"><div class="ct rv"><div class="ci"><h2>Parlons de <em>votre projet</em></h2><p>Achat, location ou estimation : décrivez votre besoin, nous vous répondons par e-mail.</p>
- <a class="m" href="mailto:gnezalejunior01@gmail.com">gnezalejunior01@gmail.com</a></div>
+<section id="biens"><h2 class="d rv">Nos <i>biens</i> du moment</h2><p class="sb rv">Exemples de biens et de prix, à remplacer par vos annonces. <b id="cnt"></b></p><div class="gr" id="gr"></div></section>
+<section class="bld" id="projet"><div class="stk"><div><p style="letter-spacing:.3em;font-size:12px;color:#6fe0b8;margin-bottom:14px">VOTRE PROJET</p><h2 class="d">Du plan <i>aux clés</i></h2><div class="stp" id="stp"><div><b>1. Les fondations</b><span>On cadre votre budget et vos envies.</span></div><div><b>2. Les murs et le toit</b><span>On sélectionne et on visite avec vous.</span></div><div><b>3. Les clés en main</b><span>On vous accompagne jusqu'à la signature.</span></div></div></div><div class="bs"><svg viewBox="0 0 200 150" id="bsv"></svg></div></div></section>
+<section id="contact"><div class="cn rv"><div class="l"><h2 class="d">Parlons de votre <i style="color:#c7f5e3">projet</i></h2><p>Achat, location ou estimation : décrivez votre besoin et nous vous répondons par e-mail.</p><a class="m" href="mailto:gnezalejunior01@gmail.com">gnezalejunior01@gmail.com</a></div>
  <form id="f"><input id="nm" placeholder="Votre nom" required><input id="ph" placeholder="Votre téléphone (facultatif)"><textarea id="ms" placeholder="Votre message" required></textarea><button class="bt" type="submit">Envoyer par e-mail ✉️</button></form></div></section>
-<footer>© 2026 Immo Ivoire — Abidjan · Site réalisé par Junior Gnezale</footer>
+<footer>© 2026 Immo Ivoire — Abidjan · Site réalisé par <a href="../">Junior Gnezale</a></footer>
 <script>
-const $=s=>document.querySelector(s),MAIL='gnezalejunior01@gmail.com';
+const $=s=>document.querySelector(s),MAIL='gnezalejunior01@gmail.com',R=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const L=[{id:1,t:'Villa moderne 5 pièces',c:'Cocody Riviera',k:'Vente',p:'185 000 000 FCFA',s:'320 m²',b:5,h:'villa',i:'1600596542815-ffad4c1539a9'},{id:2,t:'Appartement 3 pièces',c:'Marcory Zone 4',k:'Location',p:'350 000 FCFA / mois',s:'85 m²',b:2,h:'immeuble',i:'1545324418-cc1a3fa10c00'},{id:3,t:'Studio meublé',c:'Yopougon Niangon',k:'Location',p:'120 000 FCFA / mois',s:'28 m²',b:1,h:'maison',i:'1502672260266-1c1ef2d93688'},{id:4,t:'Duplex 4 pièces',c:'Cocody Angré',k:'Vente',p:'95 000 000 FCFA',s:'160 m²',b:3,h:'villa',i:'1512917774080-9991f1c4c750'},{id:5,t:'Maison basse 4 pièces',c:'Bingerville',k:'Vente',p:'45 000 000 FCFA',s:'200 m²',b:3,h:'maison',i:'1564013799919-ab600027ffc6'},{id:6,t:'Appartement standing',c:'Plateau',k:'Location',p:'650 000 FCFA / mois',s:'110 m²',b:3,h:'immeuble',i:'1560448204-e02f11c3d0e2'}];
 const C={maison:['#f2e3c9','#c8553d','#6b3f2a'],villa:['#ffffff','#2b3a55','#8a5a44'],immeuble:['#d9e2ee','#4a5d7e','#3b4a66']};
-// ---- Maison en pièces ----
-function house(t,cls=''){const [w,r,d]=C[t],g='#9ad8ff',P=[];
- P.push(`<rect x="8" y="138" width="184" height="9" rx="4" fill="#2f6b45"/>`);
- if(t=='maison'){P.push(`<rect x="124" y="30" width="14" height="30" fill="#8a5a44"/>`,`<rect x="45" y="72" width="110" height="68" fill="${w}"/>`,`<polygon points="33,76 100,24 167,76" fill="${r}"/>`,`<rect x="89" y="102" width="24" height="38" rx="3" fill="${d}"/>`,`<rect x="57" y="88" width="24" height="24" rx="2" fill="${g}"/>`,`<rect x="121" y="88" width="24" height="24" rx="2" fill="${g}"/>`,`<circle cx="107" cy="122" r="2.5" fill="#f5b841"/>`)}
- if(t=='villa'){P.push(`<rect x="28" y="96" width="124" height="44" fill="${w}"/>`,`<rect x="48" y="58" width="84" height="40" fill="#e8edf5"/>`,`<rect x="20" y="90" width="140" height="8" fill="${r}"/>`,`<rect x="40" y="52" width="100" height="8" fill="${r}"/>`,`<rect x="38" y="106" width="52" height="28" fill="${g}"/>`,`<rect x="104" y="106" width="24" height="34" fill="${d}"/>`,`<rect x="58" y="68" width="26" height="22" fill="${g}"/>`,`<rect x="96" y="68" width="26" height="22" fill="${g}"/>`,`<rect x="170" y="88" width="5" height="52" fill="#8b5e3c"/>`,`<ellipse cx="164" cy="86" rx="18" ry="6" fill="#2f9e5b" transform="rotate(-20 164 86)"/>`,`<ellipse cx="180" cy="86" rx="18" ry="6" fill="#3bb36b" transform="rotate(20 180 86)"/>`)}
- if(t=='immeuble'){P.push(`<rect x="52" y="22" width="96" height="118" fill="${w}"/>`,`<rect x="46" y="14" width="108" height="10" fill="${r}"/>`);
-  for(let y=0;y<4;y++)for(let x=0;x<3;x++)P.push(`<rect x="${62+x*30}" y="${34+y*24}" width="18" height="15" rx="2" fill="${(x+y)%3?g:'#ffe08a'}"/>`);P.push(`<rect x="90" y="118" width="22" height="22" rx="3" fill="${d}"/>`)}
- return `<svg viewBox="0 0 200 150" class="hse ${cls}">${P.map((p,i)=>p.replace('/>',` class="pc" style="--x:${(Math.random()*260-130)|0}px;--y:${(Math.random()*220-150)|0}px;--r:${(Math.random()*160-80)|0}deg;transition-delay:${i*45}ms"/>`)).join('')}</svg>`}
-// Hero
-const hero=$('#hero');hero.innerHTML=house('villa','ex');const hs=hero.firstChild;
-setTimeout(()=>hs.classList.remove('ex'),500);
-const tog=()=>hs.classList.toggle('ex');let loop=setInterval(tog,5200);hs.onclick=()=>{tog();clearInterval(loop);loop=setInterval(tog,5200)};
-// Titre mot par mot
-$('#h1').innerHTML='Trouvez la <em>maison</em> de vos rêves à Abidjan'.split(' ').map((w,i)=>`<span class="w" style="animation-delay:${.2+i*.15}s">${w}</span>`).join(' ');
-// Skyline
-$('#sky').innerHTML=Array.from({length:42},(_,i)=>`<i style="height:${30+Math.random()*110}px;animation-delay:${i*.04}s;opacity:${.55+Math.random()*.45}"></i>`).join('');
-// Biens
-const L=[
-{id:1,t:'Villa moderne 5 pièces',c:'Cocody Riviera',k:'Vente',p:'185 000 000 FCFA',s:'320 m²',b:5,h:'villa'},
-{id:2,t:'Appartement 3 pièces',c:'Marcory Zone 4',k:'Location',p:'350 000 FCFA / mois',s:'85 m²',b:2,h:'immeuble'},
-{id:3,t:'Studio meublé',c:'Yopougon Niangon',k:'Location',p:'120 000 FCFA / mois',s:'28 m²',b:1,h:'maison'},
-{id:4,t:'Duplex 4 pièces',c:'Cocody Angré',k:'Vente',p:'95 000 000 FCFA',s:'160 m²',b:3,h:'villa'},
-{id:5,t:'Maison basse 4 pièces',c:'Bingerville',k:'Vente',p:'45 000 000 FCFA',s:'200 m²',b:3,h:'maison'},
-{id:6,t:'Appartement standing',c:'Plateau',k:'Location',p:'650 000 FCFA / mois',s:'110 m²',b:3,h:'immeuble'}];
-const coms=[...new Set(L.map(x=>x.c))];$('#com').innerHTML+=coms.map(c=>`<option>${c}</option>`).join('');
-$('#mq').innerHTML=(['Cocody','Marcory','Yopougon','Riviera','Bingerville','Plateau','Koumassi','Abobo','Treichville'].map(c=>`<span>${c}</span>`).join('')).repeat(4);
-$('#gr').innerHTML=L.map(x=>`<article class="ls rv" data-k="${x.k}" data-c="${x.c}"><div class="vis"><span class="tag ${x.k=='Location'?'l':''}">${x.k=='Vente'?'À VENDRE':'À LOUER'}</span>${house(x.h,'ex')}</div><div class="bd"><h3>${x.t}</h3><div class="lo">📍 ${x.c}</div><div class="pr">${x.p}</div><div class="ft"><span>📐 ${x.s}</span><span>🛏️ ${x.b} ch.</span><span>Réf. ${x.id}</span></div><button class="bt" data-r="${x.id}">Je suis intéressé</button></div></article>`).join('');
-let ft='all';const apply=()=>document.querySelectorAll('.ls').forEach(e=>e.classList.toggle('hide',(ft!='all'&&e.dataset.k!=ft)||($('#com').value&&e.dataset.c!=$('#com').value)));
-document.querySelectorAll('.flt button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.flt button').forEach(x=>x.classList.remove('on'));b.classList.add('on');ft=b.dataset.t;apply()});$('#com').onchange=apply;
-// Apparition + assemblage au scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('on');const s=e.target.querySelector('.hse');if(s)setTimeout(()=>s.classList.remove('ex'),300);io.unobserve(e.target)}),{threshold:.2});
-document.querySelectorAll('.rv').forEach((e,i)=>{e.style.transitionDelay=(i%3)*.1+'s';io.observe(e)});
-document.querySelectorAll('.ls').forEach(k=>{const s=k.querySelector('.hse');k.addEventListener('mouseenter',()=>s.classList.add('ex'));k.addEventListener('mouseleave',()=>s.classList.remove('ex'));
-k.addEventListener('mousemove',e=>{const b=k.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;k.style.transform=`perspective(800px) rotateY(${x*9}deg) rotateX(${-y*9}deg)`});k.addEventListener('mouseleave',()=>k.style.transform='')});
+function house(t,cls){const [w,r,d]=C[t],g='#9ad8ff',P=['<rect x="8" y="138" width="184" height="9" rx="4" fill="#2f6b45"/>'];
+ if(t=='maison')P.push(`<rect x="124" y="30" width="14" height="30" fill="#8a5a44"/>`,`<rect x="45" y="72" width="110" height="68" fill="${w}"/>`,`<polygon points="33,76 100,24 167,76" fill="${r}"/>`,`<rect x="89" y="102" width="24" height="38" rx="3" fill="${d}"/>`,`<rect class="w" x="57" y="88" width="24" height="24" fill="${g}"/>`,`<rect class="w" x="121" y="88" width="24" height="24" fill="${g}"/>`);
+ if(t=='villa')P.push(`<rect x="28" y="96" width="124" height="44" fill="${w}"/>`,`<rect x="48" y="58" width="84" height="40" fill="#e8edf5"/>`,`<rect x="20" y="90" width="140" height="8" fill="${r}"/>`,`<rect x="40" y="52" width="100" height="8" fill="${r}"/>`,`<rect class="w" x="38" y="106" width="52" height="28" fill="${g}"/>`,`<rect x="104" y="106" width="24" height="34" fill="${d}"/>`,`<rect class="w" x="58" y="68" width="26" height="22" fill="${g}"/>`,`<rect class="w" x="96" y="68" width="26" height="22" fill="${g}"/>`,`<rect x="170" y="88" width="5" height="52" fill="#8b5e3c"/>`,`<ellipse cx="164" cy="86" rx="18" ry="6" fill="#2f9e5b" transform="rotate(-20 164 86)"/>`,`<ellipse cx="180" cy="86" rx="18" ry="6" fill="#3bb36b" transform="rotate(20 180 86)"/>`);
+ if(t=='immeuble'){P.push(`<rect x="52" y="22" width="96" height="118" fill="${w}"/>`,`<rect x="46" y="14" width="108" height="10" fill="${r}"/>`);for(let y=0;y<4;y++)for(let x=0;x<3;x++)P.push(`<rect class="w" x="${62+x*30}" y="${34+y*24}" width="18" height="15" fill="${g}"/>`);P.push(`<rect x="90" y="118" width="22" height="22" rx="3" fill="${d}"/>`)}
+ return P.map(p=>p.replace('/>',` class="pc ${p.includes('class="w"')?'w':''}" style="--x:${(Math.random()*260-130)|0}px;--y:${(Math.random()*-200-20)|0}px;--r:${(Math.random()*160-80)|0}deg"/>`).replace('class="w" ','')).join('')}
+$('#fc').innerHTML+=[...new Set(L.map(x=>x.c))].map(c=>`<option>${c}</option>`).join('');
+$('#mq').innerHTML=(['Cocody','<em>Marcory</em>','Plateau','<em>Riviera</em>','Bingerville','<em>Yopougon</em>','Angré','<em>Koumassi</em>'].map(c=>`<span>${c.replace('<em>','').replace('</em>','')}</span>`).join('')).repeat(4);
+$('#gr').innerHTML=L.map(x=>`<article class="ls rv" data-k="${x.k}" data-c="${x.c}" data-b="${x.b}"><div class="pic"><span class="tag ${x.k=='Location'?'l':''}">${x.k=='Vente'?'À VENDRE':'À LOUER'}</span><button class="hr" aria-label="Favori">♡</button><img src="https://images.unsplash.com/photo-${x.i}?auto=format&fit=crop&w=800&q=70" alt="${x.t}" loading="lazy" onerror="this.parentNode.classList.add('nf')"><svg viewBox="0 0 200 150" class="hse ex">${house(x.h)}</svg></div><div class="bd"><h3>${x.t}</h3><div class="lo">📍 ${x.c}</div><div class="pr">${x.p}</div><div class="ft"><span>📐 ${x.s}</span><span>🛏️ ${x.b} ch.</span><span>Réf. ${x.id}</span></div><button class="bt s" data-r="${x.id}">Je suis intéressé</button></div></article>`).join('');
+function filt(){const t=$('#ft').value,c=$('#fc').value,b=+$('#fb').value;let n=0;document.querySelectorAll('.ls').forEach(e=>{const ok=(!t||e.dataset.k==t)&&(!c||e.dataset.c==c)&&(+e.dataset.b>=b);e.classList.toggle('hide',!ok);if(ok)n++});$('#cnt').textContent=n+' bien'+(n>1?'s':'')+' affiché'+(n>1?'s':'')}
+['#ft','#fc','#fb'].forEach(s=>$(s).onchange=filt);$('#go').onclick=()=>{filt();$('#biens').scrollIntoView({behavior:'smooth'})};filt();
+document.addEventListener('click',e=>{if(e.target.classList.contains('hr'))e.target.classList.toggle('on'),e.target.textContent=e.target.classList.contains('on')?'♥':'♡';const r=e.target.dataset.r;if(!r)return;const x=L.find(l=>l.id==r);$('#ms').value=`Bonjour, je suis intéressé par : ${x.t} — ${x.c} (${x.p}, Réf. ${x.id}). Pouvez-vous me contacter ?`;$('#contact').scrollIntoView({behavior:'smooth'});setTimeout(()=>$('#nm').focus(),800)});
+document.querySelectorAll('.ls').forEach(k=>{const s=k.querySelector('.hse');k.addEventListener('mouseenter',()=>s.classList.add('ex'));k.addEventListener('mouseleave',()=>s.classList.remove('ex'));k.addEventListener('mousemove',e=>{const b=k.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;k.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`});k.addEventListener('mouseleave',()=>k.style.transform='')});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('on');const s=e.target.querySelector('.hse');if(s)setTimeout(()=>s.classList.remove('ex'),250);io.unobserve(e.target)}),{threshold:.15});document.querySelectorAll('.rv').forEach((e,i)=>{e.style.transitionDelay=(i%3)*.1+'s';io.observe(e)});
+// Maison qui se construit au défilement
+const bsv=$('#bsv');bsv.innerHTML=house('villa');const pcs=[...bsv.querySelectorAll('.pc')],st=[...document.querySelectorAll('#stp div')],V=pcs.map(p=>({x:parseFloat(p.style.getPropertyValue('--x')),y:parseFloat(p.style.getPropertyValue('--y')),r:parseFloat(p.style.getPropertyValue('--r'))}));
+pcs.forEach(p=>{p.style.transition='none';p.classList.remove('pc')});
+(function f(){const b=$('#projet').getBoundingClientRect(),p=Math.min(1,Math.max(0,-b.top/(b.height-innerHeight)));
+ pcs.forEach((el,i)=>{const q=Math.min(1,Math.max(0,(p*1.25-i/pcs.length*.55)/.4)),e=1-Math.pow(1-q,3),o=V[i];el.style.transform=`translate(${o.x*(1-e)*2}px,${o.y*(1-e)*2}px) rotate(${o.r*(1-e)}deg)`;el.style.opacity=.1+.9*e});
+ st.forEach((s,i)=>s.classList.toggle('on',p>=i/3-.01&&(i==2||p<(i+1)/3)));bsv.classList.toggle('lit',p>.9);requestAnimationFrame(f)})();
+// Vidéo : pause hors écran
+const hv=$('#hv');if(R)hv.pause();else new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?hv.play().catch(()=>{}):hv.pause()),{threshold:.2}).observe(hv);
 // Contact par e-mail
-document.addEventListener('click',e=>{const r=e.target.dataset.r;if(!r)return;const x=L.find(l=>l.id==r);$('#ms').value=`Bonjour, je suis intéressé par le bien suivant : ${x.t} — ${x.c} (${x.p}, Réf. ${x.id}). Pouvez-vous me contacter ?`;$('#contact').scrollIntoView({behavior:'smooth'});setTimeout(()=>$('#nm').focus(),700)});
-$('#f').onsubmit=e=>{e.preventDefault();const body=`${$('#ms').value}\n\nNom : ${$('#nm').value}\nTéléphone : ${$('#ph').value||'-'}`;
-location.href=`mailto:${MAIL}?subject=${encodeURIComponent('Demande Immo Ivoire — '+$('#nm').value)}&body=${encodeURIComponent(body)}`};
+$('#f').onsubmit=e=>{e.preventDefault();location.href=`mailto:${MAIL}?subject=${encodeURIComponent('Demande Immo Ivoire — '+$('#nm').value)}&body=${encodeURIComponent($('#ms').value+'\n\nNom : '+$('#nm').value+'\nTéléphone : '+($('#ph').value||'-'))}`};
 // PWA
-let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('#inst').style.display='inline-block'});
-$('#inst').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$('#inst').style.display='none'};
+let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('#inst').style.display='inline-block'});$('#inst').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$('#inst').style.display='none'};
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script><script>/*KITDONE*/(function(o){
 const $=(s)=>document.querySelectorAll(s);
@@ -151,4 +122,4 @@ hs.forEach(h=>io.observe(h));const phs=[...$('.ph')];phs.forEach(p=>io.observe(p
 (function f(){if(bar)bar.style.width=scrollY/Math.max(1,document.body.scrollHeight-innerHeight)*100+'%';
  phs.forEach(p=>{const i=p.querySelector('img');if(!i)return;const r=p.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;i.style.transform='translateY('+((r.top+r.height/2-innerHeight/2)/innerHeight*-60)+'px) scale('+(p.classList.contains('on')?1.05:1.3)+')'});requestAnimationFrame(f)})();
 if(!o.nomag&&matchMedia('(hover:hover)').matches)$(o.mag||'.bt,.cta').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+(e.clientX-r.left-r.width/2)*.22+'px,'+(e.clientY-r.top-r.height/2)*.32+'px)'});b.addEventListener('mouseleave',()=>b.style.transform='')});
-})({});</script></body></html>
+})({noglow:1,mag:'.bt'});</script></body></html>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🌺%3C/text%3E%3C/svg%3E">
 <title>Bissap Ivoire — Fraîcheur naturelle d'Abidjan</title>
@@ -68,6 +70,14 @@ footer{background:var(--d);color:#fff;text-align:center;padding:30px;position:re
 #ki b{font-size:76px;display:block;animation:kj .6s ease-in-out infinite alternate}@keyframes kj{to{transform:translateY(-14px) rotate(-8deg)}}#ki h1{font:800 clamp(30px,6vw,60px) 'Arial Black',Arial;margin:10px 0 18px}#ki i{display:block;height:4px;width:0;margin:auto;background:var(--ka,#2ee59d);animation:kl 1.4s ease-out forwards}@keyframes kl{to{width:200px}}
 .kbl{position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;animation:kd 14s ease-in-out infinite alternate}@keyframes kd{to{transform:translate(18vw,12vh) scale(1.3)}}
 @media(prefers-reduced-motion:reduce){.kw,.ph,.ph figcaption{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}}
+
+.vsec{position:relative;z-index:2;background:linear-gradient(#fff4ea,#ffe3d3)}.vsec h2{color:var(--r2)}
+.vg{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1100px;margin:auto}
+.vc{position:relative;aspect-ratio:16/9;border-radius:26px;overflow:hidden;background:#2a0310;box-shadow:0 24px 50px #7a0a2840;transition:transform .4s,box-shadow .4s}.vc:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:0 34px 60px #7a0a2860}
+.vc video{width:100%;height:100%;object-fit:cover;display:block}.vc .tg{position:absolute;left:16px;top:14px;background:#000a;color:#fff;font:700 12px Arial;letter-spacing:.14em;padding:6px 14px;border-radius:20px;z-index:2}
+.pl{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;border:0;background:#fff;color:var(--r);font-size:30px;cursor:pointer;z-index:3;box-shadow:0 0 0 0 #fff9;animation:plp 2s infinite;transition:transform .3s,opacity .4s}.pl:hover{transform:scale(1.15)}.vc.playing .pl{opacity:0;pointer-events:none}
+@keyframes plp{70%{box-shadow:0 0 0 26px #fff0}}.vcap{text-align:center;margin-top:12px;font-weight:700;color:var(--r2)}
+@media(max-width:760px){.vg{grid-template-columns:1fr}}
 </style></head><body>
 <canvas id="p"></canvas>
 <nav><b>Bissap <span>Ivoire</span> 🌺</b><button id="cartBtn">🛒 Panier (<span id="cnt">0</span>)</button></nav>
@@ -90,8 +100,11 @@ footer{background:var(--d);color:#fff;text-align:center;padding:30px;position:re
  <div class="card reveal"><span class="em">🌿</span><h3>100 % naturel</h3><p>Pas de colorant, de vraies fleurs d'hibiscus.</p></div>
  <div class="card reveal"><span class="em">🧊</span><h3>Servi bien frais</h3><p>Préparé le jour même et gardé au froid.</p></div>
  <div class="card reveal"><span class="em">🛵</span><h3>Livraison rapide</h3><p>Commande par WhatsApp, livraison à Abidjan.</p></div></div></section>
+<section class="vsec" id="videos"><h2 class="d">Le bissap en <em style="font-style:normal;color:var(--r)">vidéo</em></h2><p class="sub">Deux petits films pour donner soif.</p>
+<div class="vg"><div><div class="vc" id="v1"><span class="tg">EN BOUCLE</span><video muted loop playsinline preload="metadata" poster="video/bissap-hero.jpg"><source src="video/bissap-hero.webm" type="video/webm"><source src="video/bissap-hero.mp4" type="video/mp4"></video></div><p class="vcap">Le verre qu'on a tous envie de boire</p></div>
+<div><div class="vc" id="v2"><span class="tg">LA RECETTE</span><video playsinline preload="none" poster="video/bissap-recette.jpg"><source src="video/bissap-recette.webm" type="video/webm"><source src="video/bissap-recette.mp4" type="video/mp4"></video><button class="pl" aria-label="Lire la vidéo">▶</button></div><p class="vcap">Notre recette en 4 étapes</p></div></div></section>
 <section class="kgal"><p class="kl">Notre univers</p><h2 class="d">Fraîcheur en <em style="font-style:normal;color:var(--r)">images</em></h2><div class="gal"><figure class="ph" data-e="🥤"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=70" alt="Bien frais" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Bien frais</figcaption></figure><figure class="ph" data-e="🍋"><img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=70" alt="Glaçons &amp; citron" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Glaçons &amp; citron</figcaption></figure><figure class="ph" data-e="🌺"><img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=900&q=70" alt="Fait maison" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Fait maison</figcaption></figure><figure class="ph" data-e="🍹"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=70" alt="Pour tous" loading="lazy" onerror="this.parentNode.classList.add('nf')"><figcaption>Pour tous</figcaption></figure></div></section>
-<footer>© 2026 Bissap Ivoire — Abidjan, Côte d'Ivoire<br>Site réalisé par Junior Gnezale</footer>
+<footer>© 2026 Bissap Ivoire — Abidjan, Côte d'Ivoire<br>Site réalisé par <a href="../" style="color:inherit;text-decoration:underline">Junior Gnezale</a></footer>
 <div id="veil"></div>
 <aside id="drawer"><h3>Mon panier <button id="x">✕</button></h3><div id="items"></div>
  <input id="nom" placeholder="Votre nom"><input id="lieu" placeholder="Quartier de livraison (ex : Yopougon)">
@@ -145,4 +158,7 @@ hs.forEach(h=>io.observe(h));const phs=[...$('.ph')];phs.forEach(p=>io.observe(p
 (function f(){if(bar)bar.style.width=scrollY/Math.max(1,document.body.scrollHeight-innerHeight)*100+'%';
  phs.forEach(p=>{const i=p.querySelector('img');if(!i)return;const r=p.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;i.style.transform='translateY('+((r.top+r.height/2-innerHeight/2)/innerHeight*-60)+'px) scale('+(p.classList.contains('on')?1.05:1.3)+')'});requestAnimationFrame(f)})();
 if(!o.nomag&&matchMedia('(hover:hover)').matches)$(o.mag||'.bt,.cta').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+(e.clientX-r.left-r.width/2)*.22+'px,'+(e.clientY-r.top-r.height/2)*.32+'px)'});b.addEventListener('mouseleave',()=>b.style.transform='')});
-})({});</script></body></html>
+})({});</script><script>(function(){const R=matchMedia('(prefers-reduced-motion:reduce)').matches,a=document.querySelector('#v1 video'),b=document.querySelector('#v2 video'),c=document.querySelector('#v2');
+if(!R&&a){new IntersectionObserver(es=>es.forEach(e=>{e.isIntersecting?a.play().catch(()=>{}):a.pause()}),{threshold:.35}).observe(a)}
+c.querySelector('.pl').onclick=()=>{b.controls=true;b.play();c.classList.add('playing')};b.onended=()=>{c.classList.remove('playing');b.controls=false}})();</script>
+</body></html>

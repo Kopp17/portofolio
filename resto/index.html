@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#140c08">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🍲%3C/text%3E%3C/svg%3E">
@@ -91,7 +93,7 @@ footer{text-align:center;padding:30px;color:var(--m);font-size:13px;border-top:1
  <form id="f"><input class="w" id="nm" placeholder="Votre nom" required><input class="w" id="ph" placeholder="Votre téléphone" required><input id="dt" type="date" required><select id="hr"><option>12h00</option><option>13h00</option><option>19h00</option><option selected>20h00</option><option>21h00</option></select>
  <select class="w" id="pe"><option>2 personnes</option><option>3 personnes</option><option>4 personnes</option><option>5 à 8 personnes</option><option>Groupe (9+)</option></select>
  <button class="bt g w" data-m="wa" type="submit">Réserver sur WhatsApp</button><button class="bt o w" data-m="ml" type="submit">Réserver par e-mail</button></form></div></section>
-<footer>© 2026 Le Baobab — Abidjan · Démo réalisée par Junior Gnezale</footer>
+<footer>© 2026 Le Baobab — Abidjan · Démo réalisée par <a href="../" style="color:inherit;text-decoration:underline">Junior Gnezale</a></footer>
 <script>
 const $=s=>document.querySelector(s),WA='2250758167537',MAIL='gnezalejunior01@gmail.com',R=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // lettres

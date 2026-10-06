@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
@@ -137,15 +139,15 @@ const m=Math.hypot(p.x-mx,p.y-my);if(m<160){x.strokeStyle=`rgba(255,138,43,${.6-
 requestAnimationFrame(draw)})();
 
 const PJ=[
-{c:'web',t:'Bissap Ivoire — Boutique en ligne',d:'Site de vente animé : produits, panier qui se remplit en animation et commande envoyée par WhatsApp avec le total en FCFA.',tags:['HTML','CSS','JavaScript','WhatsApp'],img:['bissap-1','bissap-2'],demo:'bissap/'},
+{c:'web',t:'Bissap Ivoire — Boutique en ligne',d:'Site de vente animé avec 2 vidéos (boucle d\'ambiance et recette en 4 étapes), photos, panier qui se remplit en animation et commande envoyée par WhatsApp avec le total en FCFA.',tags:['HTML','CSS','JavaScript','Vidéo','WhatsApp'],img:['bissap-1','bissap-3','bissap-2'],demo:'bissap/'},
 {c:'app',t:'CaissePro — Caisse et stock',d:'Application pour boutique : encaissement, stock qui baisse à chaque vente, alertes de rupture, rapport et graphique sur 7 jours, export CSV.',tags:['JavaScript','Application','Rapport','CSV'],img:['caisse-1','caisse-2','caisse-3'],demo:'caissepro/'},
-{c:'web',t:'Immo Ivoire — Site immobilier (PWA)',d:'Site d\'agence installable sur téléphone et utilisable hors connexion. Les maisons se décomposent et se recomposent en animation. Contact par e-mail.',tags:['PWA','JavaScript','SVG','Animations'],img:['immo-1','immo-3','immo-2'],demo:'immo/'},
+{c:'web',t:'Immo Ivoire — Site immobilier (PWA)',d:'Site immobilier au design moderne, installable sur téléphone (PWA) : vidéo d\'accueil, recherche par type, commune et chambres, annonces avec photos, maison qui se construit en défilant, contact par e-mail.',tags:['PWA','JavaScript','Vidéo','Animations'],img:['immo-1','immo-3','immo-2'],demo:'immo/'},
 {c:'web',t:'Kinetik — Studio de motion design',d:'Site ultra animé : texte cinétique qui réagit à la souris, forme liquide, curseur personnalisé, défilement horizontal et ligne qui se dessine au scroll.',tags:['Motion design','JavaScript','CSS','SVG'],img:['motion-1','motion-3','motion-2'],demo:'motion/'},
 {c:'web',t:'Le Baobab — Site de restaurant animé',d:'Restaurant ivoirien : braises qui montent, assiette qui tourne, ingrédients qui se rassemblent en défilant, menu filtrable, commande et réservation par WhatsApp ou e-mail.',tags:['Motion design','JavaScript','Canvas','WhatsApp'],img:['resto-1','resto-3','resto-2'],demo:'resto/'},
 {c:'web',t:'Awa & Koffi — Invitation de mariage animée',d:'Invitation qui s\'ouvre comme une enveloppe, compte à rebours, programme qui se dessine, ajout au calendrier et confirmation de présence par WhatsApp ou e-mail.',tags:['Motion design','JavaScript','Canvas','Calendrier'],img:['mariage-1','mariage-2','mariage-3'],demo:'mariage/'},
 {c:'py',t:'Gestion de parc informatique',d:'Application Python avec base de données : suivi des équipements, tickets d\'assistance par priorité et statut, export CSV. La démo en ligne est une version JavaScript.',tags:['Python','Flask','SQLite'],img:['parc-1','parc-2','parc-3'],demo:'parc/',code:'https://github.com/kopp17/gestion-parc-it'}];
 const pj=document.getElementById('pj');
-pj.innerHTML=PJ.map((p,i)=>`<article class="pc reveal" data-c="${p.c}"><div class="im" data-i="${i}"><img src="img/${p.img[0]}.jpg" alt="${p.t}" loading="lazy"><span>🔍 ${p.img.length} captures</span></div><div class="bd"><h3>${p.t}</h3><p>${p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div>${p.demo?`<a href="${p.demo}" target="_blank">▶ Démo en direct</a>`:''}${p.code?`<a href="${p.code}" target="_blank" rel="noopener">&lt;/&gt; Code source</a>`:''}</div></article>`).join('');
+pj.innerHTML=PJ.map((p,i)=>`<article class="pc reveal" data-c="${p.c}"><div class="im" data-i="${i}"><img src="img/${p.img[0]}.jpg" alt="${p.t}" loading="lazy"><span>🔍 ${p.img.length} captures</span></div><div class="bd"><h3>${p.t}</h3><p>${p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div>${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener">▶ Démo en direct</a>`:''}${p.code?`<a href="${p.code}" target="_blank" rel="noopener">&lt;/&gt; Code source</a>`:''}</div></article>`).join('');
 document.querySelectorAll('.flt button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.flt button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
 document.querySelectorAll('.pc').forEach(c=>c.classList.toggle('hide',b.dataset.f!='all'&&c.dataset.c!=b.dataset.f))});
 document.querySelectorAll('.pc').forEach(k=>{io.observe(k);k.addEventListener('mousemove',e=>{const b=k.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;k.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`});k.addEventListener('mouseleave',()=>k.style.transform='')});

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#1e3b2f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💍%3C/text%3E%3C/svg%3E">
@@ -68,7 +70,7 @@ section{padding:100px 6vw;position:relative}.w{max-width:960px;margin:auto}h2{fo
 <section class="rsvp"><p class="cap rv" style="text-align:center">R.S.V.P.</p><h2 class="sc rv">Serez-vous des nôtres ?</h2>
  <form id="f" class="rv"><input id="nm" placeholder="Votre nom et prénom" required><select id="pr"><option>Je serai présent(e)</option><option>Je ne pourrai pas venir</option></select><select id="nb"><option>1 personne</option><option>2 personnes</option><option>3 personnes</option><option>4 personnes</option></select><textarea id="ms" placeholder="Un petit mot pour les mariés (facultatif)"></textarea>
  <div class="bs"><button class="bt g" data-m="wa" type="submit">Confirmer sur WhatsApp</button><button class="bt v" data-m="ml" type="submit">Confirmer par e-mail</button></div></form></section>
-<footer class="sc">Avec tout notre amour, Awa &amp; Koffi 💍<small>Démo d'invitation réalisée par Junior Gnezale</small></footer>
+<footer class="sc">Avec tout notre amour, Awa &amp; Koffi 💍<small>Démo d'invitation réalisée par <a href="../" style="color:inherit;text-decoration:underline">Junior Gnezale</a></small></footer>
 <script>
 const $=s=>document.querySelector(s),WA='2250758167537',MAIL='gnezalejunior01@gmail.com',R=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // enveloppe

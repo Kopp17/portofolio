@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💰%3C/text%3E%3C/svg%3E">
 <title>CaissePro — Caisse &amp; stock</title>
@@ -70,9 +72,9 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:40}
  <table><thead><tr><th>Produit</th><th>Prix</th><th>Stock</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
 <div class="view" id="rapport"><div class="kpis"><div class="kpi">Chiffre d'affaires du jour<b id="k1" data-n="0">0</b></div><div class="kpi">Ventes du jour<b id="k2">0</b></div><div class="kpi">Produit star<b id="k3">-</b></div></div>
  <div class="chart" id="chart"></div><br><button class="btn" id="csv">⬇ Exporter en CSV</button> <button class="btn sec" id="reset">Réinitialiser la démo</button></div>
-</main><div id="toast"></div><canvas id="cf"></canvas>
+</main><footer style="text-align:center;padding:26px;color:#86a396;font-size:13px">Application réalisée par <a href="../" style="color:#2ee59d">Junior Gnezale</a></footer><div id="toast"></div><canvas id="cf"></canvas>
 <script>
-const $=s=>document.querySelector(s),fmt=n=>Math.round(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),cs=x=>/^[=+\-@\t\r]/.test(String(x))?"'"+x:String(x);const $=s=>document.querySelector(s),fmt=n=>Math.round(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA';
 const KEY='caissepro-v1';let D,T={};
 function demo(){const pr=[['Riz 1 kg',900,40],['Huile 1 L',1500,25],['Sucre 1 kg',800,30],['Lait en poudre',2200,12],['Eau 1,5 L',500,60],['Savon',350,45],['Pâtes',450,35],['Café Nescafé',1800,8]];
  const v=[];for(let d=6;d>=1;d--)for(let i=0;i<3+Math.floor(Math.random()*5);i++){const dt=new Date(Date.now()-d*864e5);v.push({d:dt.toISOString().slice(0,10),t:2000+Math.floor(Math.random()*9000),l:'-'})}
@@ -82,11 +84,11 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
 const today=()=>new Date().toISOString().slice(0,10);
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)}
 function counter(el,to){const s=performance.now();(function f(t){const k=Math.min(1,(t-s)/900);el.textContent=fmt(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s)}
-function tiles(){$('#tiles').innerHTML=D.prod.map(p=>`<button class="tile ${p.s<=0?'out':''}" data-id="${p.id}"><span class="st ${p.s<=5?'low':''}">${p.s} en stock</span><b>${p.n}</b><span class="pr">${fmt(p.p)}</span></button>`).join('')}
+function tiles(){$('#tiles').innerHTML=D.prod.map(p=>`<button class="tile ${p.s<=0?'out':''}" data-id="${p.id}"><span class="st ${p.s<=5?'low':''}">${p.s} en stock</span><b>${esc(p.n)}</b><span class="pr">${fmt(p.p)}</span></button>`).join('')}
 function ticket(){const ids=Object.keys(T);let tot=0;
- $('#ticket').innerHTML=ids.length?ids.map(i=>{const p=D.prod.find(x=>x.id==i);tot+=p.p*T[i];return `<div class="line"><b>${p.n}</b><button data-m="${i}">−</button>${T[i]}<button data-a="${i}">+</button></div>`}).join(''):'<p style="color:var(--m);padding:10px 0">Touchez un produit pour l\'ajouter.</p>';
+ $('#ticket').innerHTML=ids.length?ids.map(i=>{const p=D.prod.find(x=>x.id==i);tot+=p.p*T[i];return `<div class="line"><b>${esc(p.n)}</b><button data-m="${i}">−</button>${T[i]}<button data-a="${i}">+</button></div>`}).join(''):'<p style="color:var(--m);padding:10px 0">Touchez un produit pour l\'ajouter.</p>';
  $('#tot').textContent=fmt(tot);$('#pay').disabled=!ids.length;return tot}
-function stock(){$('#rows').innerHTML=D.prod.map(p=>`<tr><td>${p.n}</td><td>${fmt(p.p)}</td><td><button class="sbtn" data-sm="${p.id}">−</button> <b style="color:${p.s<=5?'var(--r)':'var(--t)'}">${p.s}</b> <button class="sbtn" data-sa="${p.id}">+</button></td><td><button class="btn sec" data-del="${p.id}">Supprimer</button></td></tr>`).join('')}
+function stock(){$('#rows').innerHTML=D.prod.map(p=>`<tr><td>${esc(p.n)}</td><td>${fmt(p.p)}</td><td><button class="sbtn" data-sm="${p.id}">−</button> <b style="color:${p.s<=5?'var(--r)':'var(--t)'}">${p.s}</b> <button class="sbtn" data-sa="${p.id}">+</button></td><td><button class="btn sec" data-del="${p.id}">Supprimer</button></td></tr>`).join('')}
 function rapport(){const j=D.ventes.filter(v=>v.d==today());counter($('#k1'),j.reduce((a,v)=>a+v.t,0));$('#k2').textContent=j.length;
  const c={};D.ventes.forEach(v=>v.l.split(', ').forEach(x=>{if(x!='-'){const n=x.replace(/^\d+ x /,'');c[n]=(c[n]||0)+ +x.split(' x ')[0]}}));
  const top=Object.entries(c).sort((a,b)=>b[1]-a[1])[0];$('#k3').textContent=top?top[0]:'-';
@@ -101,7 +103,7 @@ document.addEventListener('click',e=>{const d=e.target.closest('[data-id],[data-
  if(q.a){if(T[q.a]<g(q.a).s)T[q.a]++;ticket()}if(q.m){if(--T[q.m]<=0)delete T[q.m];ticket()}
  if(q.sa){g(q.sa).s++;save();stock()}if(q.sm){const p=g(q.sm);p.s=Math.max(0,p.s-1);save();stock()}
  if(q.del){D.prod=D.prod.filter(p=>p.id!=q.del);save();stock()}});
-$('#pay').onclick=()=>{const tot=ticket(),l=Object.keys(T).map(i=>{const p=D.prod.find(x=>x.id==i);p.s-=T[i];return `${T[i]} x ${p.n}`}).join(', ');
+$('#pay').onclick=()=>{const tot=ticket(),l=Object.keys(T).map(i=>{const p=D.prod.find(x=>x.id==i);p.s-=T[i];return `${T[i]} x ${cs(p.n)}`}).join(', ');
  D.ventes.push({d:today(),t:tot,l});save();T={};all();toast('Vente enregistrée : '+fmt(tot)+' ✔');confetti()};
 $('#add').onclick=()=>{const n=$('#n').value.trim(),p=+$('#p').value,s=+$('#s').value;if(!n||!p)return toast('Nom et prix obligatoires');
  D.prod.push({id:Date.now(),n,p,s:s||0});save();['#n','#p','#s'].forEach(i=>$(i).value='');stock();toast('Produit ajouté')};
